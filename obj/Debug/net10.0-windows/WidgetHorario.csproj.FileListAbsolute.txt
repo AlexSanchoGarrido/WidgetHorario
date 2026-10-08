@@ -12,6 +12,7 @@ C:\Users\alumno.HPPAVILLION-23\Desktop\proyecto_widget\WidgetHorario\obj\Debug\n
 C:\Users\alumno.HPPAVILLION-23\Desktop\proyecto_widget\WidgetHorario\obj\Debug\net10.0-windows\WidgetHorario.AssemblyInfoInputs.cache
 C:\Users\alumno.HPPAVILLION-23\Desktop\proyecto_widget\WidgetHorario\obj\Debug\net10.0-windows\WidgetHorario.AssemblyInfo.cs
 C:\Users\alumno.HPPAVILLION-23\Desktop\proyecto_widget\WidgetHorario\obj\Debug\net10.0-windows\WidgetHorario.csproj.CoreCompileInputs.cache
+C:\Users\alumno.HPPAVILLION-23\Desktop\proyecto_widget\WidgetHorario\obj\Debug\net10.0-windows\WidgetHorario.sourcelink.json
 C:\Users\alumno.HPPAVILLION-23\Desktop\proyecto_widget\WidgetHorario\obj\Debug\net10.0-windows\WidgetHorario.dll
 C:\Users\alumno.HPPAVILLION-23\Desktop\proyecto_widget\WidgetHorario\obj\Debug\net10.0-windows\refint\WidgetHorario.dll
 C:\Users\alumno.HPPAVILLION-23\Desktop\proyecto_widget\WidgetHorario\obj\Debug\net10.0-windows\WidgetHorario.pdb

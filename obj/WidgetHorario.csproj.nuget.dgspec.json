@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\alumno.HPPAVILLION-23\\Desktop\\proyecto_widget\\WidgetHorario\\WidgetHorario.csproj": {}
+    "C:\\Users\\alumno.HPPAVILLION-23\\Desktop\\proyecto_widget\\WidgetHorario\\WidgetHorario.csproj": {}
   },
   "projects": {
-    "c:\\Users\\alumno.HPPAVILLION-23\\Desktop\\proyecto_widget\\WidgetHorario\\WidgetHorario.csproj": {
+    "C:\\Users\\alumno.HPPAVILLION-23\\Desktop\\proyecto_widget\\WidgetHorario\\WidgetHorario.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\alumno.HPPAVILLION-23\\Desktop\\proyecto_widget\\WidgetHorario\\WidgetHorario.csproj",
+        "projectUniqueName": "C:\\Users\\alumno.HPPAVILLION-23\\Desktop\\proyecto_widget\\WidgetHorario\\WidgetHorario.csproj",
         "projectName": "WidgetHorario",
-        "projectPath": "c:\\Users\\alumno.HPPAVILLION-23\\Desktop\\proyecto_widget\\WidgetHorario\\WidgetHorario.csproj",
+        "projectPath": "C:\\Users\\alumno.HPPAVILLION-23\\Desktop\\proyecto_widget\\WidgetHorario\\WidgetHorario.csproj",
         "packagesPath": "C:\\Users\\alumno.HPPAVILLION-23\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\alumno.HPPAVILLION-23\\Desktop\\proyecto_widget\\WidgetHorario\\obj\\",
+        "outputPath": "C:\\Users\\alumno.HPPAVILLION-23\\Desktop\\proyecto_widget\\WidgetHorario\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\alumno.HPPAVILLION-23\\AppData\\Roaming\\NuGet\\NuGet.Config"

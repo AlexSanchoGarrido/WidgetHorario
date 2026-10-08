@@ -6,6 +6,9 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using WidgetHorario.Models;
 using System.Windows.Media.Effects;
+using System.Windows.Interop;
+using System;
+using System.Runtime.InteropServices;
 
 namespace WidgetHorario;
 
@@ -14,11 +17,70 @@ public partial class MainWindow : Window
     private readonly DispatcherTimer _timer;
     private bool _siempreVisible = false;
 
+    //Redimensionado de pantalla
+    private const int WM_NCLBUTTONDOWN = 0x00A1;
+
+    private const int HTLEFT = 10;
+    private const int HTRIGHT = 11;
+    private const int HTTOP = 12;
+    private const int HTTOPLEFT = 13;
+    private const int HTTOPRIGHT = 14;
+    private const int HTBOTTOM = 15;
+    private const int HTBOTTOMLEFT = 16;
+    private const int HTBOTTOMRIGHT = 17;
+
+    [DllImport("user32.dll")]
+    private static extern IntPtr SendMessage(
+        IntPtr hWnd,
+        int Msg,
+        IntPtr wParam,
+        IntPtr lParam);
+
+
+    private void Window_MouseMove(object sender, MouseEventArgs e)
+    {
+        const double resizeBorder = 8;
+
+        Point position = e.GetPosition(this);
+
+        bool left = position.X <= resizeBorder;
+        bool right = position.X >= ActualWidth - resizeBorder;
+        bool top = position.Y <= resizeBorder;
+        bool bottom = position.Y >= ActualHeight - resizeBorder;
+
+        if (left && top)
+            Cursor = Cursors.SizeNWSE;
+        else if (right && bottom)
+            Cursor = Cursors.SizeNWSE;
+        else if (right && top)
+            Cursor = Cursors.SizeNESW;
+        else if (left && bottom)
+            Cursor = Cursors.SizeNESW;
+        else if (left || right)
+            Cursor = Cursors.SizeWE;
+        else if (top || bottom)
+            Cursor = Cursors.SizeNS;
+        else
+            Cursor = Cursors.Arrow;
+    }
 
     private void CambiarSiempreVisible(bool activar)
     {
         _siempreVisible = activar;
         Topmost = activar;
+    }
+
+    private void TopmostButton_Click(object sender, RoutedEventArgs e)
+    {
+        CambiarSiempreVisible(!_siempreVisible);
+
+        TopmostButton.Foreground = _siempreVisible
+            ? Brushes.White
+            : new SolidColorBrush(Color.FromRgb(136, 136, 144));
+
+        TopmostButton.ToolTip = _siempreVisible
+            ? "Desfijar"
+            : "Fijar encima";
     }
     private readonly string[] _dias =
     {
@@ -288,53 +350,18 @@ public partial class MainWindow : Window
 
                 contenedor.Children.Add(borde);
 
-                // Texto
-                var panelTexto = new StackPanel
-                {
-                    HorizontalAlignment =
-                        HorizontalAlignment.Center,
-
-                    VerticalAlignment =
-                        VerticalAlignment.Center
-                };
-
+                // Iniciales de la asignatura
                 var nombre = new TextBlock
                 {
                     Text = clase.Asignatura,
-
                     Foreground = Brushes.White,
-
-                    FontSize = 15,
-
-                    FontWeight =
-                        FontWeights.SemiBold,
-
-                    HorizontalAlignment =
-                        HorizontalAlignment.Center
+                    FontSize = 16,
+                    FontWeight = FontWeights.Bold,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center
                 };
 
-                panelTexto.Children.Add(nombre);
-
-                var profesor = new TextBlock
-                {
-                    Text = clase.Profesor,
-
-                    Foreground =
-                        new SolidColorBrush(
-                            Color.FromRgb(210, 210, 215)),
-
-                    FontSize = 11,
-
-                    HorizontalAlignment =
-                        HorizontalAlignment.Center,
-
-                    Margin =
-                        new Thickness(0, 3, 0, 0)
-                };
-
-                panelTexto.Children.Add(profesor);
-
-                contenedor.Children.Add(panelTexto);
+                contenedor.Children.Add(nombre);
             }
         }
 
@@ -528,9 +555,53 @@ public partial class MainWindow : Window
     }
 
     private void Window_MouseLeftButtonDown(
-        object sender,
-        MouseButtonEventArgs e)
+    object sender,
+    MouseButtonEventArgs e)
     {
+        if (e.OriginalSource is Button)
+            return;
+
+        Point position = e.GetPosition(this);
+
+        const double resizeBorder = 8;
+
+        bool left = position.X <= resizeBorder;
+        bool right = position.X >= ActualWidth - resizeBorder;
+        bool top = position.Y <= resizeBorder;
+        bool bottom = position.Y >= ActualHeight - resizeBorder;
+
+        int hitTest = 0;
+
+        if (left && top)
+            hitTest = HTTOPLEFT;
+        else if (right && top)
+            hitTest = HTTOPRIGHT;
+        else if (left && bottom)
+            hitTest = HTBOTTOMLEFT;
+        else if (right && bottom)
+            hitTest = HTBOTTOMRIGHT;
+        else if (left)
+            hitTest = HTLEFT;
+        else if (right)
+            hitTest = HTRIGHT;
+        else if (top)
+            hitTest = HTTOP;
+        else if (bottom)
+            hitTest = HTBOTTOM;
+
+        if (hitTest != 0)
+        {
+            IntPtr hwnd = new WindowInteropHelper(this).Handle;
+
+            SendMessage(
+                hwnd,
+                WM_NCLBUTTONDOWN,
+                (IntPtr)hitTest,
+                IntPtr.Zero);
+
+            return;
+        }
+
         DragMove();
     }
 }

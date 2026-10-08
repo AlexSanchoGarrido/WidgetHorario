@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WidgetHorario")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4e5d13d98da9bd7ab47ac7a5ba24af227011375a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+764b57b88da766113c5442ecdc7978590a3335ed")]
 [assembly: System.Reflection.AssemblyProductAttribute("WidgetHorario")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WidgetHorario")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

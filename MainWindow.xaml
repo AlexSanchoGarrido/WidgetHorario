@@ -4,11 +4,15 @@
         Title="Horario"
         Width="1100"
         Height="700"
+        MinWidth="500"
+        MinHeight="300"
         WindowStyle="None"
         AllowsTransparency="True"
+        Opacity="0.90"
         Background="Transparent"
         ResizeMode="CanResize"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MouseMove="Window_MouseMove">
 
     <Border
         Background="#18181B"
@@ -17,6 +21,7 @@
         BorderThickness="1"
         Padding="20">
 
+        <!-- ÚNICO HIJO DEL BORDER -->
         <Grid>
 
             <Grid.RowDefinitions>
@@ -25,7 +30,6 @@
             </Grid.RowDefinitions>
 
             <!-- CABECERA -->
-
             <Grid Grid.Row="0">
 
                 <Grid.ColumnDefinitions>
@@ -33,7 +37,8 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel>
+                <!-- TÍTULO Y FECHA -->
+                <StackPanel Grid.Column="0">
 
                     <TextBlock
                         Text="HORARIO"
@@ -49,18 +54,37 @@
 
                 </StackPanel>
 
-                <TextBlock
-                    x:Name="HoraText"
+                <!-- BOTÓN TOPMOST + HORA -->
+                <StackPanel
                     Grid.Column="1"
-                    Foreground="White"
-                    FontSize="24"
-                    FontWeight="SemiBold"
-                    VerticalAlignment="Center"/>
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center">
+
+                    <Button
+                        x:Name="TopmostButton"
+                        Content="📌"
+                        Width="40"
+                        Height="40"
+                        Margin="0,0,12,0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Foreground="#888890"
+                        FontSize="18"
+                        ToolTip="Fijar encima"
+                        Click="TopmostButton_Click"/>
+
+                    <TextBlock
+                        x:Name="HoraText"
+                        Foreground="White"
+                        FontSize="24"
+                        FontWeight="SemiBold"
+                        VerticalAlignment="Center"/>
+
+                </StackPanel>
 
             </Grid>
 
             <!-- TABLA -->
-
             <Grid
                 x:Name="HorarioGrid"
                 Grid.Row="1"
