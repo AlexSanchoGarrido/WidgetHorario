@@ -37,7 +37,9 @@ public partial class MainWindow : Window
         IntPtr lParam);
 
 
-    private void Window_MouseMove(object sender, MouseEventArgs e)
+    private void Window_MouseMove(
+    object sender,
+    System.Windows.Input.MouseEventArgs e)
     {
         const double resizeBorder = 8;
 
@@ -127,6 +129,34 @@ public partial class MainWindow : Window
 
         Actualizar(null, EventArgs.Empty);
     }
+
+    private void MostrarHorario()
+    {
+        Show();
+
+        if (WindowState == WindowState.Minimized)
+            WindowState = WindowState.Normal;
+
+        Activate();
+
+        if (_siempreVisible)
+            Topmost = true;
+    }
+
+    private void MostrarHorario_Click(
+        object sender,
+        RoutedEventArgs e)
+    {
+        MostrarHorario();
+    }
+
+    private void CerrarDesdeTray_Click(
+        object sender,
+        RoutedEventArgs e)
+    {
+        Close();
+    }
+
 
     private void CrearHorario()
     {
@@ -556,7 +586,7 @@ public partial class MainWindow : Window
 
     private void Window_MouseLeftButtonDown(
     object sender,
-    MouseButtonEventArgs e)
+    System.Windows.Input.MouseButtonEventArgs e)
     {
         if (e.OriginalSource is Button)
             return;
